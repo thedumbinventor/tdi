@@ -81,7 +81,7 @@ jobs:
 
 
 =======
-    runs-on: ubuntu-latest
+    runs-on: macosx-latest
 
     steps:
 
@@ -94,8 +94,6 @@ jobs:
 
         run: echo file 2 created >file2.txt
 
-
-
       - name: displaying the contents
 
         run: cat file2.txt
@@ -105,7 +103,7 @@ jobs:
       - run : |
           
 <<<<<<< HEAD
-          cp file1.txt file2.txt
+          cp text1.txt file2.txt
 =======
           cp text1.txt file2.txt
 >>>>>>> a2c95a7fd9156620c07643371455777bb7ffdbc9

@@ -12,7 +12,7 @@ jobs:
 
     - name: Create new branch if file not present
       run: |
-        if [ ! -f file2.txt ]; then
+        if [ ! -f text1.txt ]; then
           git branch new-branch
           git checkout new-branch
         fi
@@ -21,8 +21,8 @@ jobs:
       if: success()
       run: |
         mkdir -p my-artifact
-        cp file2.txt my-artifact/
-        echo "Created artifact with file2.txt"
+        cp text1.txt my-artifact/
+        echo "Created artifact with text1.txt"
         ls -alh my-artifact/
 
     - name: Store artifact

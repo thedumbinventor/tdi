@@ -1,3 +1,32 @@
-name: copy
+name: Create branch and artifact for text file
 
+on: push
 
+jobs:
+  create-branch-and-artifact:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Create new branch if file not present
+      run: |
+        if [ ! -f myfile.txt ]; then
+          git branch new-branch
+          git checkout new-branch
+        fi
+
+    - name: Create artifact with text file
+      if: success()
+      run: |
+        mkdir -p my-artifact
+        cp myfile.txt my-artifact/
+        echo "Created artifact with myfile.txt"
+        ls -alh my-artifact/
+
+    - name: Store artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: my-artifact/

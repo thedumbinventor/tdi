@@ -21,8 +21,8 @@ jobs:
       if: success()
       run: |
         mkdir -p my-artifact
-        cp myfile.txt my-artifact/
-        echo "Created artifact with myfile.txt"
+        cp file2.txt my-artifact/
+        echo "Created artifact with file2.txt"
         ls -alh my-artifact/
 
     - name: Store artifact

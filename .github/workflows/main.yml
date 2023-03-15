@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 name: GIT
 
 
@@ -32,6 +33,25 @@ on:
 
 
 
+=======
+name: TDI
+
+# Controls when the workflow will run
+
+on:
+
+  
+
+  push:
+
+    branches: [ "main" ]
+
+
+
+  pull_request:
+
+    types: [closed]
+>>>>>>> a2c95a7fd9156620c07643371455777bb7ffdbc9
 
 jobs:
 
@@ -39,6 +59,7 @@ jobs:
 
   build:
 
+<<<<<<< HEAD
 
 
     runs-on: ubuntu-latest
@@ -59,6 +80,16 @@ jobs:
 
 
 
+=======
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access 
+
+      - uses: actions/checkout@v3
+
+>>>>>>> a2c95a7fd9156620c07643371455777bb7ffdbc9
       - name: creating a file
 
         run: echo file 2 created >file2.txt
@@ -73,7 +104,11 @@ jobs:
 
       - run : |
           
+<<<<<<< HEAD
           cp file1.txt file2.txt
+=======
+          cp text1.txt file2.txt
+>>>>>>> a2c95a7fd9156620c07643371455777bb7ffdbc9
           
           cat file2.txt
 
@@ -85,4 +120,8 @@ jobs:
 
           name: my-artifact
 
+<<<<<<< HEAD
           path: file2.txt
+=======
+          path: file2.txt
+>>>>>>> a2c95a7fd9156620c07643371455777bb7ffdbc9

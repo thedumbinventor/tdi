@@ -1,90 +1,24 @@
-name: GIT
-
-
-
-
-# Controls when the workflow will run
+name: Build and Deploy
 
 on:
-
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-
   push:
-
-    branches: [ "main" ]
-
-
-
-  pull_request:
-
-    types: [closed]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    branches: [ main ]
 
 jobs:
-
-  # This workflow contains a single job called "build"
-
-  build:
-
-
-
+  build-and-deploy:
     runs-on: ubuntu-latest
 
-
-
-
-
-
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Build
+      run: |
+        # Replace this with your build command
+        make build
 
-      - uses: actions/checkout@v3
-
-
-
-
-
-
-      - name: creating a file
-
-        run: echo file 2 created >file2.txt
-
-
-
-      - name: displaying the contents
-
-        run: cat file2.txt
-
-
-
-      - run : |
-          
-          cp text1.txt file2.txt
-          
-          cat file2.txt
-
-
-
-      - uses : actions/upload-artifact@v3
-
-        with:
-
-          name: my-artifact
-
-          path: file2.txt
-
-
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-artifacts
+        path: /path/to/artifacts/*

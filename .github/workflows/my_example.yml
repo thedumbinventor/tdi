@@ -12,7 +12,7 @@ jobs:
 
     - name: Create new branch if file not present
       run: |
-        if [ ! -f myfile.txt ]; then
+        if [ ! -f file2.txt ]; then
           git branch new-branch
           git checkout new-branch
         fi

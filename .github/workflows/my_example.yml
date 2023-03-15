@@ -14,8 +14,7 @@ jobs:
 
     - name: Build
       run: |
-        # Replace this with your build command
-        make build
+        echo "hello world"
 
     - name: Archive artifacts
       uses: actions/upload-artifact@v2

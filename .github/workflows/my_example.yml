@@ -1,23 +1,32 @@
-name: Build and Deploy
+name: Create branch and artifact for text file
 
-on:
-  push:
-    branches: [ main ]
+on: push
 
 jobs:
-  build-and-deploy:
+  create-branch-and-artifact:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Build
+    - name: Create new branch if file not present
       run: |
-        echo "hello world"
+        if [ ! -f file2.txt ]; then
+          git branch new-branch
+          git checkout new-branch
+        fi
 
-    - name: Archive artifacts
+    - name: Create artifact with text file
+      if: success()
+      run: |
+        mkdir -p my-artifact
+        cp file2.txt my-artifact/
+        echo "Created artifact with file2.txt"
+        ls -alh my-artifact/
+
+    - name: Store artifact
       uses: actions/upload-artifact@v2
       with:
-        name: my-artifacts
-        path: /path/to/artifacts/*
+        name: my-artifact
+        path: my-artifact/

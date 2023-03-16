@@ -1,0 +1,33 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request_review:
+    types: [approved]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build and test
+      run: 
+        echo "hello world!"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event.review.state == 'approved'
+    steps:
+    - name: Create example.txt
+      run: echo "Hello, world!" > example.txt
+      id: create_file
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: example.txt
+        path: example.txt
+      if: always()

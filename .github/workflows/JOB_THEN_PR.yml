@@ -1,0 +1,28 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - PR_BRANCH
+  pull_request_review:
+    types: [approved]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Build and test
+      run: |
+        # Your build and test commands here
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event.review.state == 'approved'
+    steps:
+    - name: Deploy to production
+      run: |
+        # Your deployment commands here
+
